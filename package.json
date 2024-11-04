@@ -1,8 +1,8 @@
 {
-  "name": "my-new-app",
-  "productName": "my-new-app",
-  "version": "1.0.0",
-  "description": "My Electron application description",
+  "name": "project-databse",
+  "productName": "project-database",
+  "version": "0.0.1",
+  "description": "Project database",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
@@ -34,6 +34,7 @@
     "@vercel/webpack-asset-relocator-loader": "^1.7.3",
     "css-loader": "^6.11.0",
     "electron": "32.2.0",
+    "electron-store": "^10.0.0",
     "eslint": "^8.57.1",
     "eslint-plugin-import": "^2.31.0",
     "fork-ts-checker-webpack-plugin": "^7.3.0",
