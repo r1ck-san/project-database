@@ -5,7 +5,7 @@ import Header from "./Header";
 
 export default function MainWindow() {
     return (
-        <Box >
+        <Box sx={{ width: '100%' }}>
             <Header />
         </Box>
     );
