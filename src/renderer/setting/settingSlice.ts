@@ -1,18 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import {RootState} from "../../store";
 
 interface SettingState {
-    value: number
+    assetPath: string
 }
 
 const initialState: SettingState = {
-    value: 0,
+    assetPath: '',
 }
 
 export const settingSlice = createSlice({
     name: 'setting',
     initialState,
     reducers: {
+        setAssetPath: (state, action: PayloadAction<string>) => {
+            state.assetPath = action.payload
+        }
     },
 })
+
+export const { setAssetPath } = settingSlice.actions

@@ -1,10 +1,10 @@
-export interface IElectronAPI {
-    consoleLog: () => Promise<void>;
-    loadCsv: () => Promise<void>;
+export interface ISettingContext {
+    setAssetPath: (path: string) => Promise<void>;
+    getAssetPath: () => Promise<string>;
 }
 
 declare global {
     interface Window {
-        electronAPI: IElectronAPI;
+        settingContext: ISettingContext;
     }
 }
