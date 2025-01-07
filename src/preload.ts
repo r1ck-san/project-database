@@ -6,4 +6,5 @@ import { contextBridge, ipcRenderer, IpcRendererEvent } from "electron";
 contextBridge.exposeInMainWorld('electronAPI', {
     consoleLog: () => {
     },
+    loadCsv:() => ipcRenderer.invoke('create-context')
 })
