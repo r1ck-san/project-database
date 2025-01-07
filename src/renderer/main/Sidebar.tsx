@@ -4,21 +4,28 @@ import {
     List,
     ListItem, ListItemButton, ListItemIcon, ListItemText,
 } from "@mui/material";
-import HomeIcon from '@mui/icons-material/Home';
+import {Settings, TableView} from "@mui/icons-material";
+
+const dataList = [
+    { title: 'Table', icon: <TableView /> },
+    { title: 'Setting', icon: <Settings /> },
+]
 
 export default function Sidebar (){
 
     return (
         <Box sx={{width: 250}}>
             <List>
-                <ListItem disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <HomeIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Home" />
-                    </ListItemButton>
-                </ListItem>
+                {dataList.map((data, index) => (
+                    <ListItem disablePadding key={index}>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                {data.icon}
+                            </ListItemIcon>
+                            <ListItemText primary={data.title} />
+                        </ListItemButton>
+                    </ListItem>
+                ))}
             </List>
         </Box>
     );
