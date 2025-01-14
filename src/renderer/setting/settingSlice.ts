@@ -1,6 +1,4 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
-import {RootState} from "../../store";
 
 interface SettingState {
     isInitialized: boolean
@@ -24,16 +22,18 @@ export const initializeAsync = createAsyncThunk(
     }
 )
 
+export const openSelectDirectoryDialogAsync = createAsyncThunk(
+    'openSelectDirectoryDialogAsync',
+    async () => {
+        return window.settingContext.openSelectDirectoryDialog();
+    }
+)
+
 // Slice
 export const settingSlice = createSlice({
     name: 'setting',
     initialState,
     reducers: {
-        setAssetPath: (state, action: PayloadAction<string>) => {
-            state.assetPath = action.payload
-            console.log(state.assetPath);
-            window.settingContext.setAssetPath(action.payload);
-        }
     },
     extraReducers: builder => {
         builder.addCase(initializeAsync.pending, (state, action) => {
@@ -56,7 +56,14 @@ export const settingSlice = createSlice({
             console.log(`${state.assetPath}`);
             console.log('initializeAsync.fulfilled');
         })
+        builder.addCase(openSelectDirectoryDialogAsync.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.error = null;
+            if (action.payload == undefined) {
+                return;
+            }
+            state.assetPath = action.payload;
+            console.log('set AssetPath: ' + state.assetPath);
+        })
     }
 })
-
-export const { setAssetPath } = settingSlice.actions

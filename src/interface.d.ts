@@ -1,6 +1,6 @@
 export interface ISettingContext {
-    setAssetPath: (path: string) => Promise<void>;
     getAssetPath: () => Promise<string>;
+    openSelectDirectoryDialog: () => Promise<string | undefined>;
 }
 
 declare global {

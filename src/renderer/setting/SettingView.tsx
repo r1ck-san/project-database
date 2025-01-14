@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {Box, Button, CircularProgress, Paper, Stack, styled, TextField, Typography} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {initializeAsync, setAssetPath} from "./settingSlice";
+import {initializeAsync, openSelectDirectoryDialogAsync} from "./settingSlice";
 import {RootState} from "../../store";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -17,22 +17,7 @@ function AssetPathItem() {
     const dispatch = useAppDispatch();
     const assetPath = useAppSelector((state: RootState) => state.setting.assetPath);
     const onSelectPath = () => {
-        console.log("onSelectPath")
-        // todo: メインプロセスで実行する
-        // const res = dialog.showOpenDialogSync({
-        //     properties: ['openDirectory'],
-        //     title: `Select AssetPath Folder`,
-        //     defaultPath: assetPath,
-        // })
-        // if (res == undefined)
-        // {
-        //     return;
-        // }
-        // if (res.length == 1) {
-        //     const selectPath = res[0]
-        //     console.log('select AssetPath: ' + selectPath);
-        //     dispatch(setAssetPath(selectPath));
-        // }
+       dispatch(openSelectDirectoryDialogAsync());
     }
     useEffect(() => {
     }, [assetPath])
