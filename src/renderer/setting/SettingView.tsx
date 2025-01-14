@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Box, CircularProgress, Paper, Stack, styled, TextField} from "@mui/material";
+import {Box, Button, CircularProgress, Paper, Stack, styled, TextField, Typography} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {initializeAsync, setAssetPath} from "./settingSlice";
 import {RootState} from "../../store";
@@ -16,21 +16,33 @@ const Item = styled(Paper)(({ theme }) => ({
 function AssetPathItem() {
     const dispatch = useAppDispatch();
     const assetPath = useAppSelector((state: RootState) => state.setting.assetPath);
-    const onChange = (path: string) => {
-        console.log(`set AssetPath: ${path}`)
-        dispatch(setAssetPath(path));
+    const onSelectPath = () => {
+        console.log("onSelectPath")
+        // todo: メインプロセスで実行する
+        // const res = dialog.showOpenDialogSync({
+        //     properties: ['openDirectory'],
+        //     title: `Select AssetPath Folder`,
+        //     defaultPath: assetPath,
+        // })
+        // if (res == undefined)
+        // {
+        //     return;
+        // }
+        // if (res.length == 1) {
+        //     const selectPath = res[0]
+        //     console.log('select AssetPath: ' + selectPath);
+        //     dispatch(setAssetPath(selectPath));
+        // }
     }
     useEffect(() => {
-
     }, [assetPath])
     return (
         <Item>
-            <TextField
-                id="setting-asset-path-field"
-                label="Asset Path"
-                onChange={(event) => onChange(event.target.value)}
-                value={assetPath}
-            />
+            <Typography variant="h6" sx={{margin: "10px"}}>Asset Path</Typography>
+            <Box display="flex" alignItems="center">
+                <Button variant="outlined" sx={{margin: "10px"}} onClick={onSelectPath}>参照</Button>
+                <Typography sx={{margin: "10px"}}>{assetPath}</Typography>
+            </Box>
         </Item>
     );
 }
